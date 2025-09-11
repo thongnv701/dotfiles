@@ -91,9 +91,14 @@ end, { desc = "Toggle quickfix list" })
 vim.keymap.set("n", "<leader>cn", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
 vim.keymap.set("n", "<leader>cp", "<cmd>cprev<cr>", { desc = "Previous quickfix item" })
 
--- source file
+-- source file (only for Lua files)
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+    local filetype = vim.bo.filetype
+    if filetype == "lua" then
+        vim.cmd("so")
+    else
+        vim.notify("Can only source Lua files", vim.log.levels.WARN)
+    end
 end)
 
 -- Insert mode: Enter insert mode on new line below cursor

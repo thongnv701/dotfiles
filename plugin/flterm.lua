@@ -1,5 +1,4 @@
--- Remap leaving 'terminal mode' to double tap esc
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+-- We'll set the double ESC keybinding per terminal buffer instead of globally
 
 local state = {
     floating = {
@@ -44,12 +43,32 @@ local toggle_terminal = function()
         state.floating = open_floating_terminal({ buf = state.floating.buf });
         if vim.bo[state.floating.buf].buftype ~= "terminal" then
             vim.cmd.terminal()
-            vim.cmd("startinsert!")
         end
+        vim.cmd("startinsert!")
+        
+        -- Set buffer-local keybinding for double ESC every time terminal opens
+        vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n><cmd>FltermClose<CR>", { 
+            buffer = state.floating.buf, 
+            noremap = true, 
+            silent = true 
+        })
     else
         vim.api.nvim_win_hide(state.floating.win)
     end
 end
 
+local close_terminal = function()
+    if vim.api.nvim_win_is_valid(state.floating.win) then
+        vim.api.nvim_win_hide(state.floating.win)
+    end
+end
+
 vim.api.nvim_create_user_command("Flterm", toggle_terminal, {})
+vim.api.nvim_create_user_command("FltermClose", close_terminal, {})
+
+-- Keybindings for floating terminal
 vim.api.nvim_set_keymap('n', '<leader>ft', [[:Flterm<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fc', [[:FltermClose<CR>]], { noremap = true, silent = true, desc = "Close floating terminal" })
+
+-- Close terminal from terminal mode with Ctrl+Q
+vim.api.nvim_set_keymap('t', '<C-q>', '<cmd>FltermClose<CR>', { noremap = true, silent = true })

@@ -47,13 +47,20 @@ return {
         opts = {
             formatters_by_ft = {
                 lua = { "stylua" },
-                python = { "isort", "black" },
+                -- python = { "isort", "black" }, -- Disabled until formatters are installed
                 go = { "gofumpt", "goimports" },
                 javascript = { { "prettierd", "prettier" } },
                 typescript = { { "prettierd", "prettier" } },
                 php = { "php_cs_fixer" },
             },
-            format_on_save = { timeout_ms = 500, lsp_fallback = true },
+            format_on_save = function(bufnr)
+                -- Only format specific file types that have formatters configured
+                local filetype = vim.bo[bufnr].filetype
+                if filetype == "python" then
+                    return nil -- Skip formatting for Python
+                end
+                return { timeout_ms = 500, lsp_fallback = true }
+            end,
         },
     },
 }

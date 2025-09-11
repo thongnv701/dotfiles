@@ -19,7 +19,7 @@ return {
             "lua",
             "go",
             "cs",
-            "python",
+            -- "python", -- Disabled until formatter is set up
         }
         -- Create a keymap for vim.lsp.buf.implementation
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -109,7 +109,6 @@ return {
                 "gopls",         -- Go language server
                 "omnisharp",     -- C# language server
                 "pyright",       -- Python language server
-                "black",         -- Python formatter
                 "intelephense",
                 "ts_ls",
                 "eslint",
@@ -185,7 +184,9 @@ return {
                                     diagnosticMode = "workspace",
                                     useLibraryCodeForTypes = true,
                                     typeCheckingMode = "basic"
-                                }
+                                },
+                                pythonPath = vim.fn.exepath("python3") or vim.fn.exepath("python"),
+                                venvPath = vim.fn.getcwd()
                             }
                         }
                     })
