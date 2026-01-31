@@ -1,1 +1,106 @@
+# System & OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+*.swp
+*.swo
+*~
+.directory
+
+# Editor temp files
+*.tmp
+*.bak
+*.backup
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs
+*.log
+logs/
+*.error
+
+# Dependencies & packages
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.venv/
+venv/
+ENV/
+env/
+.env
+.env.local
+
+# Build artifacts & caches
+build/
+dist/
+.cache/
+.pytest_cache/
+.gradle/
+target/
+
+# Rust
+Cargo.lock
+/target/
+
+# LSP & Language servers
+.lsp/
+.clangd/
+
+# Neovim specific
+nvim/.netrwhist
+nvim/plugin/packer_compiled.lua
 lazy-lock.json
+
+# Node/JavaScript
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Python
+*.egg-info/
+.tox/
+coverage.xml
+
+# IDE cache
+.vscode/extensions/
+.vscode/workspaceStorage/
+
+# Git
+.git/
+.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# OS lock files
+.~lock.*
+
+# SSH keys & secrets (if any)
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+
+# Vim/Neovim specific
+.vim/backup/*
+.vim/swap/*
+.vim/undo/*
+*.swn
+
+# Zsh
+.zcompdump*
+.zsh_history
+
+# Fish shell
+.fish_history
+.fish_sessions
