@@ -1,20 +1,30 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "oh-my-opencode",
-    "@openspoon/subtask2",
-    "@tarquinen/opencode-smart-title",
-    "envsitter-guard",
-    "cc-safety-net",
-    "opencode-google-antigravity-auth",
-    "@tarquinen/opencode-dcp@latest"
+    "opencode-antigravity-auth@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-websearch-cited@1.2.0"
   ],
+    "google": {
+      "models": {
+        "antigravity-claude-opus-4-5-thinking": {
+          "name": "Claude Opus 4.5 Thinking"
+        },
+        "antigravity-claude-sonnet-4-5-thinking": {
+          "name": "Claude Sonnet 4.5 Thinking"
+        },
+        "antigravity-claude-sonnet-4-5": { "name": "Claude Sonnet 4.5" },
+        "antigravity-gemini-3-pro": { "name": "Gemini 3 Pro" },
+        "antigravity-gemini-3-flash": { "name": "Gemini 3 Flash" }
+      }
+    }
+  },
   "mcp": {
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": ""
+        "CONTEXT7_API_KEY": "CONTEXT7_API_KEY"
       },
       "enabled": true
     },
@@ -30,7 +40,11 @@
     },
     "filesystem": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem"
+      ],
       "enabled": true
     },
     "memory": {
