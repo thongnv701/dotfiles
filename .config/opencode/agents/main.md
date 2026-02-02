@@ -1,6 +1,6 @@
 ---
 description: Main development agent for investigating and implementing changes with full capabilities
-mode: subagent
+mode: primary
 model: anthropic/claude-sonnet-4-20250514
 temperature: 0.2
 tools:

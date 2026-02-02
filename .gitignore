@@ -104,3 +104,5 @@ id_rsa.pub
 # Fish shell
 .fish_history
 .fish_sessions
+
+*.jsonc

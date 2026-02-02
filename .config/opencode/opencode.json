@@ -5,6 +5,7 @@
     "@tarquinen/opencode-dcp@latest",
     "opencode-websearch-cited@1.2.0"
   ],
+  "provider": {
     "google": {
       "models": {
         "antigravity-claude-opus-4-5-thinking": {
@@ -24,7 +25,7 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": "CONTEXT7_API_KEY"
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
       },
       "enabled": true
     },
@@ -43,7 +44,8 @@
       "command": [
         "npx",
         "-y",
-        "@modelcontextprotocol/server-filesystem"
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/nghiapham/.config/opencode"
       ],
       "enabled": true
     },
