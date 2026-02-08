@@ -6,11 +6,6 @@
   ],
   "provider": {
     "copilot": {
-      "url": "https://api.github.com/copilot/chat/completions",
-      "auth": {
-        "type": "github-token",
-        "token": "${GITHUB_TOKEN}"
-      },
       "models": {
         "claude-opus-4.5": {
           "name": "Claude Opus 4.5"
@@ -20,6 +15,30 @@
         },
         "claude-haiku-4.5": {
           "name": "Claude Haiku 4.5"
+        },
+        "gpt-4.5": {
+          "name": "GPT-4.5"
+        },
+        "gpt-4.5-turbo": {
+          "name": "GPT-4.5 Turbo"
+        },
+        "gpt-4.5-vision": {
+          "name": "GPT-4.5 Vision"
+        },
+        "gpt-4-5.2": {
+          "name": "GPT-4 5.2"
+        },
+        "gpt-4-5.2-turbo": {
+          "name": "GPT-4 5.2 Turbo"
+        },
+        "gpt-4-5.2-vision": {
+          "name": "GPT-4 5.2 Vision"
+        },
+        "gpt-4o": {
+          "name": "GPT-4o"
+        },
+        "gpt-4o-mini": {
+          "name": "GPT-4o Mini"
         }
       }
     }

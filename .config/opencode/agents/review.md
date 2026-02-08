@@ -1,7 +1,7 @@
 ---
 description: Specialized auditor for architectural integrity, security, and performance
 mode: primary
-model: google/antigravity-claude-sonnet-4-5
+model: github-copilot/claude-sonnet-4.5
 temperature: 0.1
 tools:
   write: false

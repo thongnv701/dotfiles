@@ -12,7 +12,7 @@ Explore architectural options, explain tradeoffs, and guide investigation before
 
 ```yaml
 mode: subagent
-model: copilot/claude-opus-4.5  # Strong reasoning for options analysis
+model: github-copilot/claude-sonnet-4.5  # Strong reasoning for options analysis
 temperature: 0.7  # Creative exploration
 tools:
   bash: true   # Investigate structure, patterns

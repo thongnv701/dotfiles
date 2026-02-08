@@ -12,7 +12,7 @@ Write clean, production-ready code using lean models. Maintains a structured tod
 
 ```yaml
 mode: subagent
-model: copilot/claude-haiku-4.5  # Fast & cheap for actual coding
+model: github-copilot/claude-sonnet-4.5  # Strong reasoning for options analysis
 temperature: 0.2  # Deterministic, follows patterns
 tools:
   bash: true   # Run tests, check linting

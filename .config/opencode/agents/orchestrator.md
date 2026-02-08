@@ -1,7 +1,7 @@
 ---
 description: Orchestrator agent that routes tasks to specialized subagents with token optimization
 mode: primary
-model: copilot/claude-sonnet-4.5
+model: github-copilot/claude-sonnet-4.5
 temperature: 0.2
 tools:
   write: false

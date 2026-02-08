@@ -12,7 +12,7 @@ Perform surgical code reviews, identifying logic gaps, security issues, performa
 
 ```yaml
 mode: subagent
-model: copilot/claude-opus-4.5  # Claude Opus for deep analysis
+model: github-copilot/GPT-5.2  # Strong reasoning for options analysis
 temperature: 0.1  # Focused, deterministic analysis
 tools:
   bash: true   # Trace dependencies, grep patterns
