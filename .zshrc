@@ -29,6 +29,18 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
 
 export PATH="$PATH:/Users/thongnguyen/.dotnet/tools"
+
+alias python3=python3.12
+
+# Created by `pipx` on 2026-02-04 01:26:42
+export PATH="$PATH:/Users/thongnguyen/.local/bin"
+export AWS_PROFILE=spartan
+
+# bun completions
+[ -s "/Users/thongnguyen/.bun/_bun" ] && source "/Users/thongnguyen/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
