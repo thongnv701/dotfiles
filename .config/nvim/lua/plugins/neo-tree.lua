@@ -221,10 +221,8 @@ return {
 			end
 		end
 
-		-- Set keybinding based on OS
-		local is_mac = jit.os == "OSX"
-		local toggle_key = is_mac and "<C-1>" or "<M-1>"
-		vim.keymap.set("n", toggle_key, safe_neo_tree_command("Neotree toggle"), {
+		-- Toggle Explorer with <leader>e (Space + e) - Industry standard
+		vim.keymap.set("n", "<leader>e", safe_neo_tree_command("Neotree toggle"), {
 			desc = "Toggle Explorer",
 			silent = true,	
 		})
