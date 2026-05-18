@@ -14,12 +14,9 @@ return {
 			local function on_attach(client, bufnr)
 				vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
-				vim.keymap.set(
-					"n",
-					"gd",
-					vim.lsp.buf.definition,
-					vim.tbl_extend("force", bufopts, { desc = "Go to definition" })
-				)
+				vim.keymap.set("n", "gd", function()
+					require("telescope.builtin").lsp_definitions({ show_line = false })
+				end, vim.tbl_extend("force", bufopts, { desc = "Go to definition" }))
 				vim.keymap.set(
 					"n",
 					"gD",
@@ -157,7 +154,9 @@ return {
 			end
 
 			-- Fallback keymaps
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+			vim.keymap.set("n", "gd", function()
+				require("telescope.builtin").lsp_definitions({ show_line = false })
+			end, { desc = "Go to definition" })
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
 			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "Go to references" })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover documentation" })

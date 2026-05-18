@@ -26,17 +26,6 @@ function M.setup()
 		desc = "Select all text",
 	})
 
-	-- Di chuyển giữa các cửa sổ
-	map("n", "<C-h>", "<C-w>h")
-	map("n", "<C-j>", "<C-w>j")
-	map("n", "<C-k>", "<C-w>k")
-	map("n", "<C-l>", "<C-w>l")
-
-	-- Thay đổi kích thước cửa sổ
-	map("n", "<C-Up>", ":resize -2<CR>")
-	map("n", "<C-Down>", ":resize +2<CR>")
-	map("n", "<C-Left>", ":vertical resize -2<CR>")
-	map("n", "<C-Right>", ":vertical resize +2<CR>")
 
 	-- Di chuyển văn bản trong Visual mode
 	map("v", "<A-j>", ":m .+1<CR>==")
@@ -82,25 +71,25 @@ function M.setup()
 		desc = "Close all buffers except current",
 	})
 
-	-- Error/Diagnostic Navigation (using <leader>e and <leader>p)
-	map("n", "<leader>e", function()
+	-- Error/Diagnostic Navigation
+	map("n", "]e", function()
 		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
 	end, {
 		desc = "Jump to next error",
 	})
-	map("n", "<leader>p", function()
+	map("n", "[e", function()
 		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
 	end, {
 		desc = "Jump to previous error",
 	})
 
 	-- All diagnostics (errors + warnings)
-	map("n", "<leader>ne", function()
+	map("n", "]d", function()
 		vim.diagnostic.goto_next()
 	end, {
 		desc = "Next diagnostic (all)",
 	})
-	map("n", "<leader>pe", function()
+	map("n", "[d", function()
 		vim.diagnostic.goto_prev()
 	end, {
 		desc = "Previous diagnostic (all)",

@@ -13,6 +13,14 @@ return {
 						preview_width = 0.55,
 					},
 				},
+				path_display = function(_, path)
+					local tail = require("telescope.utils").path_tail(path)
+					local parent = vim.fn.fnamemodify(path, ":h")
+					if parent == "." then
+						return tail
+					end
+					return string.format("%-40s  %s", tail, parent)
+				end,
 			},
 			pickers = {
 				find_files = {
