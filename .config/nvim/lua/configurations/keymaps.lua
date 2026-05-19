@@ -74,14 +74,16 @@ function M.setup()
 	-- Error/Diagnostic Navigation
 	map("n", "]e", function()
 		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-	end, {
-		desc = "Jump to next error",
-	})
+	end, { desc = "Jump to next error" })
 	map("n", "[e", function()
 		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-	end, {
-		desc = "Jump to previous error",
-	})
+	end, { desc = "Jump to previous error" })
+	map("n", "<leader>en", function()
+		vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+	end, { desc = "Next error" })
+	map("n", "<leader>ep", function()
+		vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	end, { desc = "Previous error" })
 
 	-- All diagnostics (errors + warnings)
 	map("n", "]d", function()
