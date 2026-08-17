@@ -54,6 +54,12 @@ return {
 				json = {
 					require("formatter.filetypes.json").prettier,
 				},
+				yaml = {
+					require("formatter.filetypes.yaml").prettier,
+				},
+				terraform = {
+					require("formatter.filetypes.terraform").terraformfmt,
+				},
 				rust = {
 					require("formatter.filetypes.rust").rustfmt,
 				},

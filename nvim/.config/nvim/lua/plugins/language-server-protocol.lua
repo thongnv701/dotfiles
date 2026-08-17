@@ -135,6 +135,18 @@ return {
 					cmd = { "wgsl-analyzer" },
 					filetypes = { "wgsl" },
 				},
+				terraformls = vim.fn.executable("terraform-ls") == 1 and {
+					cmd = { "terraform-ls", "serve" },
+					filetypes = { "terraform", "terraform-vars", "hcl" },
+					-- terraform-ls advertises incremental sync, but nvim 0.11's
+					-- incremental diff crashes on .tf edits ("attempt to get length
+					-- of local 'prev_line' (a nil value)"). Force full-document sync.
+					on_init = function(client)
+						if type(client.server_capabilities.textDocumentSync) == "table" then
+							client.server_capabilities.textDocumentSync.change = 1
+						end
+					end,
+				} or nil,
 			-- JetBrains kotlin-lsp (supports goto-implementation, unlike fwcd)
 			-- Install: brew install --cask kotlin-lsp, then clear quarantine
 			kotlin_language_server = vim.fn.executable("kotlin-lsp") == 1 and {
@@ -156,6 +168,7 @@ return {
 							root_dir = root_dir,
 							capabilities = capabilities,
 							on_attach = on_attach,
+							on_init = cfg.on_init,
 							settings = cfg.settings,
 						})
 					end,

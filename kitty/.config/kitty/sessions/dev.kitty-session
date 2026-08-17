@@ -1,0 +1,50 @@
+
+new_tab Vibe
+layout splits
+enabled_layouts fat,grid,horizontal,splits,stack,tall,vertical
+set_layout_state {"pairs": {"bias": 0.48396675281954876, "one": 19, "two": 3}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [4, 2, 78, 19, 3], "window_groups": [{"id": 19, "window_ids": [22]}, {"id": 3, "window_ids": [5]}]}}
+cd /Users/thongnguyen/Work/Source/service-outbound
+
+launch 'kitty-unserialize-data={"id": 22, "cmd_at_shell_startup": "claude"}'
+focus
+launch 'kitty-unserialize-data={"id": 5, "cmd_at_shell_startup": "claude"}' --cwd=/Users/thongnguyen/Work/Source/8fleet
+
+new_tab Orqes
+layout splits
+enabled_layouts fat,grid,horizontal,splits,stack,tall,vertical
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.7224525916972635, "one": 53}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [25, 24, 49, 46, 22, 23, 40, 64, 56, 53, 54, 55], "window_groups": [{"id": 53, "window_ids": [63]}]}}
+cd /Users/thongnguyen/Work/Source/8fleet
+
+launch 'kitty-unserialize-data={"id": 63, "cmd_at_shell_startup": "nvim ."}' '--var=IS_NVIM=1 '
+focus
+
+new_tab Dotfile
+layout splits
+enabled_layouts fat,grid,horizontal,splits,stack,tall,vertical
+set_layout_state {"pairs": {"one": 10, "two": 63}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [10, 63], "window_groups": [{"id": 10, "window_ids": [12]}, {"id": 63, "window_ids": [77]}]}}
+cd /Users/thongnguyen/dotfiles
+
+launch 'kitty-unserialize-data={"id": 12, "cmd_at_shell_startup": "claude"}'
+focus
+launch 'kitty-unserialize-data={"id": 77, "cmd_at_shell_startup": "nvim ."}' '--var=IS_NVIM=1 '
+
+new_tab
+layout fat
+enabled_layouts fat,grid,horizontal,splits,stack,tall,vertical
+set_layout_state {"main_bias": [0.5, 0.5], "biased_map": {}, "opts": {"full_size": 1, "bias": 50, "mirrored": "n"}, "class": "Fat", "all_windows": {"active_group_idx": 0, "active_group_history": [83], "window_groups": [{"id": 83, "window_ids": [103]}]}}
+cd /Users/thongnguyen
+
+launch 'kitty-unserialize-data={"id": 103}'
+focus
+
+new_tab
+layout splits
+enabled_layouts fat,grid,horizontal,splits,stack,tall,vertical
+set_layout_state {"pairs": {"horizontal": false, "bias": 0.6945676274944567, "one": 84, "two": 85}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [84, 85], "window_groups": [{"id": 84, "window_ids": [107]}, {"id": 85, "window_ids": [108]}]}}
+cd /Users/thongnguyen/Work/Source/temporal-test
+
+launch 'kitty-unserialize-data={"id": 107, "cmd_at_shell_startup": "nvim ."}' '--var=IS_NVIM=1 '
+focus
+launch 'kitty-unserialize-data={"id": 108}' --cwd=/Users/thongnguyen/Work/Source/temporal-test/edu-101-java-code
+
+focus_tab 4

@@ -34,3 +34,28 @@ export FLYWAY_DIR=/opt/homebrew/opt/flyway/libexec
 alias pio="$HOME/.platformio/penv/bin/pio"
 alias lich="curl lich.day"
 alias lichthang="curl lich.day/\$(date +%Y%m)"
+
+# completion system (needed for compdef below)
+autoload -Uz compinit && compinit -C
+
+# ---- kitty sessions ----
+export KITTY_SESSIONS="$HOME/.config/kitty/sessions"
+# list saved sessions
+sls() {
+  local names=("$KITTY_SESSIONS"/*.kitty-session(N:t:r))
+  (( ${#names} )) && print -l "${names[@]}" || echo "no sessions"
+}
+# remove a session by name:  rms dev   (rms <TAB> completes names)
+rms() {
+  [[ -z $1 ]] && { echo "usage: rms <name>"; return 1; }
+  local f="$KITTY_SESSIONS/$1.kitty-session"
+  [[ -f $f ]] || { echo "no such session: $1"; return 1; }
+  rm -v "$f"
+}
+# tab-completion of session names for rms
+_rms() { compadd -- "$KITTY_SESSIONS"/*.kitty-session(:t:r) }
+compdef _rms rms
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/thongnguyen/.local/bin:$PATH"

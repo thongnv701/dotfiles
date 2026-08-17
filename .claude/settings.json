@@ -40,7 +40,8 @@
     "caveman@caveman": true,
     "figma@claude-plugins-official": true,
     "kotlin-lsp@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": true
+    "clangd-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -48,8 +49,21 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "temporal-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "temporalio/agent-skills"
+      }
     }
   },
+  "effortLevel": "xhigh",
   "theme": "dark",
   "skipAutoPermissionPrompt": true
 }

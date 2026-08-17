@@ -11,6 +11,7 @@ return {
 				"gopls",
 				"wgsl_analyzer",
 				"arduino_language_server",
+				"terraformls",
 			},
 			automatic_installation = true,
 			-- Kotlin is started manually as JetBrains kotlin-lsp in
@@ -19,7 +20,12 @@ return {
 			-- arduino_language_server is started manually in plugins/arduino.lua
 			-- with -cli/-clangd/-fqbn flags. The mason default cmd lacks them and
 			-- would crash, so block auto-enable here too.
-			automatic_enable = { exclude = { "kotlin_language_server", "arduino_language_server" } },
+			-- terraformls is started manually in language-server-protocol.lua with
+			-- forced full-document sync (nvim 0.11 incremental diff crashes on .tf).
+			-- Blocking here prevents a second incremental-sync client from crashing.
+			automatic_enable = {
+				exclude = { "kotlin_language_server", "arduino_language_server", "terraformls" },
+			},
 		})
 	end,
 }

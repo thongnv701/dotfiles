@@ -23,7 +23,7 @@ return {
 		}
 
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "wgsl", "kotlin", "java", "cpp" },
+			ensure_installed = { "wgsl", "kotlin", "java", "cpp", "terraform", "hcl" },
 			sync_install = false,
 			auto_install = false,  -- CRITICAL - prevents auto-compilation conflicts
 			ignore_install = { "tsx", "typescript", "javascript", "vimdoc" },
