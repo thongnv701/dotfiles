@@ -27,6 +27,15 @@ return {
 			},
 		})
 
+		local manager = require("neo-tree.sources.manager")
+		local get_state = manager.get_state
+		manager.get_state = function(source_name, ...)
+			if source_name == nil then
+				return nil
+			end
+			return get_state(source_name, ...)
+		end
+
 		vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Explorer", silent = true })
 		vim.keymap.set("n", "<leader>ef", ":Neotree focus<CR>", { desc = "Focus Explorer", silent = true })
 	end,

@@ -147,12 +147,6 @@ return {
 						end
 					end,
 				} or nil,
-			-- JetBrains kotlin-lsp (supports goto-implementation, unlike fwcd)
-			-- Install: brew install --cask kotlin-lsp, then clear quarantine
-			kotlin_language_server = vim.fn.executable("kotlin-lsp") == 1 and {
-				cmd = { "kotlin-lsp", "--stdio" },
-				filetypes = { "kotlin" },
-			} or nil,
 			-- jdtls is handled in ftplugin/java.lua
 		}
 
@@ -166,7 +160,7 @@ return {
 							name = name,
 							cmd = cfg.cmd,
 							root_dir = root_dir,
-							capabilities = capabilities,
+							capabilities = cfg.capabilities or capabilities,
 							on_attach = on_attach,
 							on_init = cfg.on_init,
 							settings = cfg.settings,
@@ -174,6 +168,51 @@ return {
 					end,
 				})
 			end
+
+			vim.api.nvim_create_user_command("KotlinClean", function()
+				local buf = vim.api.nvim_get_current_buf()
+				local clients = vim.lsp.get_clients({ name = "kotlin_lsp" })
+				local root
+				for _, c in ipairs(clients) do
+					root = c.config.root_dir
+					if root then
+						break
+					end
+				end
+				root = root or get_root(buf)
+				if not root then
+					vim.notify("KotlinClean: no project root found", vim.log.levels.ERROR)
+					return
+				end
+
+				for _, c in ipairs(clients) do
+					vim.lsp.stop_client(c.id, true)
+				end
+
+				local ws = vim.fn.expand("~/Library/Caches/JetBrains/analyzer/workspaces")
+
+				vim.defer_fn(function()
+					local hits = vim.fn.systemlist(string.format(
+						"grep -rla %s %s/*/workspace-model.cache 2>/dev/null",
+						vim.fn.shellescape(root),
+						vim.fn.shellescape(ws)
+					))
+					local removed = 0
+					for _, f in ipairs(hits) do
+						local dir = vim.fn.fnamemodify(f, ":h")
+						if dir:match("/analyzer/workspaces/[^/]+$") then
+							vim.fn.delete(dir, "rf")
+							removed = removed + 1
+						end
+					end
+					vim.notify(string.format(
+						"KotlinClean: wiped %d cache dir(s) for %s -- restarting LSP",
+						removed, root))
+					if vim.api.nvim_buf_is_valid(buf) then
+						vim.api.nvim_exec_autocmds("FileType", { buffer = buf, modeline = false })
+					end
+				end, 1500)
+			end, { desc = "kotlin-lsp: kill server, wipe this project's analyzer cache, restart" })
 
 			-- Fallback keymaps
 			vim.keymap.set("n", "gd", function()

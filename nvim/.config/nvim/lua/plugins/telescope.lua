@@ -23,7 +23,7 @@ return {
 
 		telescope.setup({
 			defaults = {
-				file_ignore_patterns = { "node_modules", ".git/", "dist/", ".yarn/", "workers/", "__pycache__/", ".venv/", "venv/", "%.gz$", "%.zip$" },
+				file_ignore_patterns = { "node_modules", ".git/", "dist/", ".yarn/", "workers/", "__pycache__/", ".venv/", "venv/", "%.gz$", "%.zip$", "build/", "target/", "%.gradle/", "%.idea/", "%.class$", "%.jar$" },
 				preview = {
 					treesitter = true,
 				},
@@ -58,6 +58,11 @@ return {
 						"--exclude", "__pycache__",
 						"--exclude", ".venv",
 						"--exclude", "venv",
+						"--exclude", "build",
+						"--exclude", "target",
+						"--exclude", ".gradle",
+						"--exclude", ".idea",
+						"--exclude", ".kotlin",
 					},
 				},
 				live_grep = {

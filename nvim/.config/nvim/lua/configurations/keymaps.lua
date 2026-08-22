@@ -14,10 +14,6 @@ local function map(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- Delete the current buffer without closing its window / quitting nvim.
--- Plain :bd closes the window too, so :bd on the last buffer exits nvim to the
--- shell. Here we first point every window showing the buffer at an alternate
--- (or a fresh empty buffer), then delete it -- window layout stays intact.
 local function close_buffer()
 	local cur = vim.api.nvim_get_current_buf()
 
@@ -30,7 +26,6 @@ local function close_buffer()
 		return vim.api.nvim_buf_is_valid(b) and vim.bo[b].buflisted
 	end, vim.api.nvim_list_bufs())
 
-	-- Pick a replacement buffer: prefer the alternate (#), else any other listed one.
 	local other = nil
 	local alt = vim.fn.bufnr("#")
 	if alt ~= -1 and alt ~= cur and vim.api.nvim_buf_is_valid(alt) and vim.bo[alt].buflisted then
@@ -44,7 +39,6 @@ local function close_buffer()
 		end
 	end
 
-	-- Detach the buffer from every window before deleting it.
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		if vim.api.nvim_win_get_buf(win) == cur then
 			vim.api.nvim_win_set_buf(win, other or vim.api.nvim_create_buf(true, false))
